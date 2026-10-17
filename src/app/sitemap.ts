@@ -1,4 +1,6 @@
 // This file is automatically processed by Next.js to generate sitemap.xml
+export const dynamic = "force-static";
+
 export default async function sitemap() {
   const baseUrl = 'https://devkit.vercel.app'; // Adjust if needed; for local dev, it will be replaced
   const routes = [

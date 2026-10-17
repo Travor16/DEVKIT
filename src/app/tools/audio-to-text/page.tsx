@@ -8,7 +8,7 @@ export default function AudioToText() {
   const [isListening, setIsListening] = useState(false);
   const [transcript, setTranscript] = useState('');
   const [error, setError] = useState<string | null>(null);
-  const recognitionRef = useRef<SpeechRecognition | null>(null);
+  const recognitionRef = useRef<any>(null);
 
   useEffect(() => {
     // Check if we are in a browser environment
@@ -46,7 +46,7 @@ export default function AudioToText() {
       setIsListening(false);
     };
 
-    recognition.onerror = (event: SpeechRecognitionError) => {
+    recognition.onerror = (event: any) => {
       // Suppress 'aborted' errors as they are expected when stopping manually
       if (event.error === 'aborted') {
         return;
@@ -189,15 +189,15 @@ export default function AudioToText() {
             />
           </div>
         </div>
-      </div>
 
-      {/* Floating Error Panel */}
-      {error && (
-        <div className="fixed bottom-2 right-2 z-50 bg-zinc-900/20 border border-zinc-800/50 text-zinc-400 rounded-lg p-4 max-w-xs">
-          <p className="font-medium mb-1">Audio Error</p>
-          <p className="text-sm font-mono">{error}</p>
-        </div>
-      )}
+        {/* Floating Error Panel */}
+        {error && (
+          <div className="fixed bottom-2 right-2 z-50 bg-zinc-900/20 border border-zinc-800/50 text-zinc-400 rounded-lg p-4 max-w-xs">
+            <p className="font-medium mb-1">Audio Error</p>
+            <p className="text-sm font-mono">{error}</p>
+          </div>
+        )}
+      </div>
     </ToolLayout>
   );
 }

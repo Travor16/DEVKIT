@@ -186,7 +186,7 @@ export default function ImageConverter() {
             <>
               <div className="mb-4">
                 <span className="h-8 w-8 text-zinc-400">
-                  {<span className="text-zinc-600">🖼️</span>}
+                  <span className="text-zinc-600">🖼️</span>
                 </span>
               </div>
               <p className="text-zinc-400">Drop Image Here (PNG, JPG, SVG, WebP)</p>
@@ -261,7 +261,8 @@ export default function ImageConverter() {
                 </button>
               </div>
             </div>
-            {outputType === 'data-url' || outputType === 'json' ? (
+            {/* Fix TypeScript warnings by converting to string for comparison */}
+            {(String(outputType) === 'data-url' || String(outputType) === 'json') ? (
               <textarea
                 value={output}
                 readOnly
@@ -286,11 +287,6 @@ export default function ImageConverter() {
               </>
             )}
           </div>
-        )}
-
-        {/* Status */}
-        {isConverting && (
-          <p className="text-zinc-400 text-center">Processing...</p>
         )}
       </div>
     </ToolLayout>
